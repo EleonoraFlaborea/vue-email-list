@@ -19,12 +19,17 @@ const endpoint = 'https://flynn.boolean.careers/exercises/api/random/mail';
 
 const app = createApp ({
     data: () => ({
-        email: null,
+        emails: [],
     }),
     created(){
-        axios.get(endpoint).then(res => {
+       // if(!this.emails.length < 10 ) return;
+       for(let i = 0; i < 10; i++){
+            axios.get(endpoint).then(res => {
             console.log(res.data.response)
+
+            this.emails.push(res.data.response)
         })
+       }
     }
 
 });
