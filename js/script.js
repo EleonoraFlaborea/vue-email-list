@@ -14,14 +14,19 @@ console.log ('Vue on', Vue)
 
 const {createApp} = Vue;
 
+const endpoint = 'https://flynn.boolean.careers/exercises/api/random/mail';
+
+
 const app = createApp ({
-    data(){
-        return{
-        
-            
-        }
+    data: () => ({
+        email: null,
+    }),
+    created(){
+        axios.get(endpoint).then(res => {
+            console.log(res.data.response)
+        })
     }
 
-})
+});
 
 app.mount('#root');
